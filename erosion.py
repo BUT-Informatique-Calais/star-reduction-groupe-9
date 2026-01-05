@@ -4,7 +4,7 @@ import cv2 as cv
 import numpy as np
 
 # Open and read the FITS file
-fits_file = './examples/HorseHead.fits'
+fits_file = './examples/test_M31_linear.fits'
 hdul = fits.open(fits_file)
 
 # Display information about the file
@@ -44,7 +44,7 @@ else:
 
 
 # Define a kernel for erosion
-kernel = np.ones((3,3), np.uint8)
+kernel = np.ones((9,9), np.uint8)
 # Perform erosion
 eroded_image = cv.erode(image, kernel, iterations=1)
 
