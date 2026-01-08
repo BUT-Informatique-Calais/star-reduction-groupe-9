@@ -30,6 +30,13 @@ class FitsGUI:
             command=self.show_difference
         ).pack(pady=5)
 
+        tk.Button(
+            root,
+            text="Comparer Avant/Après",
+            command=lambda: self.blink_images()
+        ).pack(pady=5)
+
+
         # Curseur
         tk.Label(root, text="Supprimer des étoiles").pack()
         self.star_slider = tk.Scale(
@@ -201,7 +208,31 @@ class FitsGUI:
         self.show_image(diff_color)
 
 
+    def blink_images(self, n=6, interval=500):
+        """
+        Alterne l'affichage entre l'image originale et l'image traitée.
+        n : nombre total d'alternances
+        interval : temps entre alternances en ms
+        """
+        if self.img_original is None or self.current_img is None:
+            return
+
+        if n == 0:
+            self.show_image(self.current_img)
+            return
+
+        # Alterne l'affichage
+        img_to_show = self.img_original if n % 2 == 0 else self.current_img
+        self.show_image(img_to_show)
+
+        # Appelle récursivement après "interval" ms
+        self.root.after(interval, lambda: self.blink_images(n-1, interval))
+
+
+
 if __name__ == '__main__':
     root = tk.Tk()
     app = FitsGUI(root)
     root.mainloop()
+
+
