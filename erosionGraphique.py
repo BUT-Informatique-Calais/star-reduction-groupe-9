@@ -1,3 +1,7 @@
+"""
+Lancer le fichier : python3 erosionGraphique.py
+"""
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 from astropy.io import fits
@@ -63,6 +67,7 @@ class FitsGUI:
         self.label.pack(padx=10, pady=10)
 
     def load_fits(self):
+        # Ouvre un affichage pour sélectionner un fichier FITS
         path = filedialog.askopenfilename(filetypes=[("FITS files", "*.fits")])
         if not path:
             return
@@ -72,7 +77,7 @@ class FitsGUI:
         hdulist.close()
 
         if img_data.ndim == 3 and img_data.shape[0] == 3:
-            img_data = np.transpose(img_data, (1, 2, 0))
+            img_data = np.transpose(img_data, (1, 2, 0)) # Réorganisation des axes
             img_norm = (img_data - img_data.min()) / (img_data.max() - img_data.min())
             self.img_cv = cv2.cvtColor(
                 (img_norm * 255).astype(np.uint8),
@@ -92,8 +97,10 @@ class FitsGUI:
         if self.img_original is None:
             return
 
+        # Calcule la force de réduction des étoiles selon la valeur du slider
         strength = int(self.star_slider.get() / 15)
 
+        # On affiche l'image originale si force est 0
         if strength == 0:
             self.current_img = self.img_original.copy()
             self.show_image(self.current_img)
@@ -113,6 +120,7 @@ class FitsGUI:
             cv2.THRESH_BINARY, 15, -2
         )
 
+        # Érosion pour réduire la taille des étoiles
         kernel = np.ones((3, 3), np.uint8)
         img_eroded = cv2.erode(
             self.img_original,
@@ -184,6 +192,7 @@ class FitsGUI:
         if self.img_original is None or self.current_img is None:
             return
 
+        # Calcul de la différence pixel par pixel
         diff = cv2.absdiff(self.img_original, self.current_img)
 
         if diff.ndim == 3:
@@ -200,6 +209,7 @@ class FitsGUI:
         diff_color[:, :, 0] = diff_norm // 2
         diff_color[:, :, 1] = diff_norm // 3
         diff_color[:, :, 2] = 0
+        # Met en rouge  les pixels où la différence est très grande
         diff_color[diff_norm > 180] = [255, 0, 0]
 
         os.makedirs("results", exist_ok=True)

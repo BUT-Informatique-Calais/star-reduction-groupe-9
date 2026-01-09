@@ -1,3 +1,7 @@
+"""
+Lancer le fichier : python3 erosion.py
+"""
+
 from astropy.io import fits
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,7 +53,6 @@ cv2.imwrite('./results/eroded.png', img_eroded)
 mask_smooth = cv2.GaussianBlur(star_mask, (5,5), 0)
 mask_float = mask_smooth.astype(np.float32) / 255.0
 
-# Adaptation du masque pour images avec couleur
 if img_data.ndim == 3:
     mask_float = mask_float[:, :, np.newaxis]
 

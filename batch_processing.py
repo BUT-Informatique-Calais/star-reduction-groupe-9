@@ -1,5 +1,5 @@
 """
-Lancer le fichier : python batch_processing.py --input examples --output results --strength 3
+Lancer le fichier : python3 batch_processing.py --input examples --output results --strength 3
 """
 
 import argparse
