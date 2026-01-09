@@ -158,6 +158,27 @@ Conversion des valeurs d’intensité entre 0 et 1 pour le traitement avec OpenC
 
 - Différence scientifique enregistrée dans `results/etoiles.png`
 
+**Voici les différents avant/après :**
+
+Image : HorseHead
+
+![Image avec étoiles basiques](results/HorseHead_original.png)
+![Image finale après réduction des étoiles](results/HorseHead_final.png)
+
+Image : test_M31_linear
+
+![Image avec étoiles basiques](results/test_M31_linear_original.png)
+![Image finale après réduction des étoiles](results/test_M31_linear_final.png)
+
+Image : test_M31_raw
+
+![Image avec étoiles basiques](results/test_M31_raw_original.png)
+![Image finale après réduction des étoiles](results/test_M31_raw_final.png)
+
+Image de l'application 
+
+![Image finale après réduction des étoiles](img_app/app.png)
+
 # Difficultés rencontrées et solutions
 
 ## Problèmes 
