@@ -20,6 +20,7 @@ Développement d'un outil de **réduction d'étoiles** pour l'astrophotographie 
 ---
 
 ## Installation
+## Cas pour Linux
 
 ### Prérequis système
 
@@ -55,6 +56,41 @@ Ou manuellement :
 ```bash
 pip install astropy opencv-python photutils matplotlib numpy pillow tqdm
 ```
+
+## Cas pour Windows
+
+Installer Python
+
+Télécharger Python 3.12.0 depuis :
+https://www.python.org/downloads/windows/
+
+⚠️ IMPORTANT : cocher
+✅ Add Python to PATH lors de l’installation
+
+Créer le venv avec Python 3.12 :
+
+```bash
+py -3.12 -m venv venv
+```
+
+Il est préférable de faire cette commande pour éviter tout problème 
+
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+Activer le venv
+
+```bash
+venv\Scripts\Activate.ps1       # Avec powershell
+```
+
+Installation des dépendances
+
+```bash
+pip install -r requirements.txt
+```
+
 
 # Utilisation
 ## 1. Script batch : `erosion.py`
